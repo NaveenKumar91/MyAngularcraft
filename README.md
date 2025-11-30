@@ -1,23 +1,26 @@
-# 🅿️ Smart Parking System - Angular 20 + Chart.js
+Smart Parking Dashboard - Angular 20 Showcase
+================================================
 
-## 🚀 Features
-- Real-time parking slots
-- API integration
-- Dashboard with charts
-- Reactive signals
-- Toaster notifications
+✅ **Modern Angular 20 Features**
+- Signals for fine-grained reactivity & optimal re-renders
+- Standalone components architecture
+- Optimized zoneless change detection
 
-## 📁 Folder Structure
-src/
- ├── components/
- ├── services/
- ├── models/
- └── environments/
+📊 **Data Visualization & Charts**
+- Real-time parking occupancy heatmaps
+- Capacity utilization analytics
+- Interactive booking trend charts (Chart.js/Ng2-Charts)
 
-## 🛠 Installation
-npm install  
-npm start
+⚡ **Performance Optimized**
+- Debounced search & API calls
+- Lazy-loaded feature modules
+- OnPush change detection everywhere
 
----
+🎯 **Key Features**
+- Live parking spot availability
+- Booking management system
+- Responsive dashboard (mobile-first)
+- ARIA-compliant accessibility
 
- By NaveenKumar M
+🔗 **Tech Stack**
+Angular 20 | RxJS | Signals | Tailwind CSS | Chart.js | JSON Server | AuthGuard | Toaster 
