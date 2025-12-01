@@ -1,42 +1,51 @@
-<div class="container p-4 mx-auto bg-white shadow-lg rounded-xl bg-white shadow-lg rounded-xl">
-  <!-- Title -->
+<div class="container p-4 mx-auto bg-white shadow-lg rounded-xl">
   <h2 class="text-2xl font-bold text-gray-800 mb-4">Vehicle Exit & Billing</h2>
 
-  <!-- If no vehicles -->
-  @if (occupiedSlots.length === 0) {
-    <p class="text-gray-500 text-center">No vehicles currently parked.</p>
-  }
+  <!-- 🔍 Search -->
+  <input
+    type="text"
+    placeholder="Search slot or vehicle..."
+    class="w-full border p-2 rounded mb-4 shadow-sm focus:ring focus:ring-blue-300"
+    (input)="searchTerm.set($event.target.value)"
+  />
 
-  <!-- If vehicles are present -->
-  @else {
+  <!-- 🧾 Slot List -->
+  @if (pagedSlots().length === 0) {
+    <p class="text-gray-500">No vehicles found.</p>
+  } @else {
     <ul class="space-y-3">
-      @for (slot of occupiedSlots; track slot.id) {
-        <li class="flex justify-between items-center p-3 bg-gray-100 rounded-lg shadow-sm">
-          <div>
-            <p class="font-medium">{{ slot.slotNumber }} – {{ slot.vehicleNumber }}</p>
-          </div>
+      @for (slot of pagedSlots(); track slot.id) {
+        <li class="flex justify-between items-center p-3 bg-gray-100 rounded-lg">
+          <span>{{ slot.slotNumber }} - {{ slot.vehicleNumber }}</span>
 
           <button
             (click)="exit(slot.id)"
-            class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
-            Exit & Generate Bill
+            class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition">
+            Exit & Bill
           </button>
         </li>
       }
     </ul>
   }
 
-  <!-- Bill Information -->
-  @if (lastBillInfo) {
-    <div class="mt-6 p-3 bg-blue-100 border-l-4 border-blue-600 text-blue-700 rounded-lg">
-      {{ lastBillInfo }}
+  <!-- 📄 Pagination -->
+  <div class="flex justify-center items-center gap-4 mt-4">
+    <button (click)="prevPage()" 
+            [disabled]="currentPage() === 1"
+            class="bg-gray-200 px-3 py-1 rounded disabled:opacity-50">Prev</button>
+
+    <span>Page {{ currentPage() }} / {{ totalPages() }}</span>
+
+    <button (click)="nextPage()" 
+            [disabled]="currentPage() === totalPages()"
+            class="bg-gray-200 px-3 py-1 rounded disabled:opacity-50">Next</button>
+  </div>
+
+  <!-- 🔔 Toast -->
+  @if (toastMessage()) {
+    <div
+      class="fixed bottom-6 right-6 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg animate-slide-in">
+      {{ toastMessage() }}
     </div>
   }
 </div>
-@if (toastMessage()) {
-  <div
-    class="fixed bottom-6 right-6 backdrop-blur-md bg-green-500/80 text-white px-5 py-3
-           rounded-2xl shadow-xl flex items-center gap-2 animate-slide-in border border-white/30">
-    <span class="font-medium">{{ toastMessage() }}</span>
-  </div>
-}
