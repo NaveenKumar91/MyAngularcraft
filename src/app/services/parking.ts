@@ -7,7 +7,7 @@ import { ParkingSlot } from '../models/parking.model';
 })
 export class Parking {
   // Global state using signal
-  API_URL = "http://localhost:3000/slots"
+  API_URL = "https://692c3a1cc829d464006ee2c0.mockapi.io/v1/slots"
 
 
   constructor(private http: HttpClient) { }

@@ -13,8 +13,8 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/MyAngularLab",
-            "baseHref": "/MyAngularLab/",
+            "outputPath": "dist/SmartParking",
+            "baseHref": "/SmartParking/",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
